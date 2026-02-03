@@ -12,7 +12,7 @@ DEFAULT_UPDATE_INTERVAL = timedelta(minutes=DEFAULT_UPDATE_INTERVAL_MINUTES)
 CONF_UPDATE_INTERVAL = "update_interval"
 API_BASE_URL = "https://www.api-couleur-tempo.fr/api"
 REQUEST_TIMEOUT = 10
-UNIT_EURO_PER_KWH = "€/kWh"
+UNIT_EURO_PER_KWH = "EUR/kWh"
 TARIFS_SENSOR_KEYS = (
     ("bleuHC", "bleu_hc"),
     ("bleuHP", "bleu_hp"),
