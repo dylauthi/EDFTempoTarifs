@@ -33,6 +33,7 @@ class TempoSensorDescription(SensorEntityDescription):
     value_key: str | None = None
     attribute_keys: tuple[str, ...] | None = None
     is_list: bool = False
+    object_id: str | None = None
 
 
 SENSOR_DESCRIPTIONS: list[TempoSensorDescription] = [
@@ -52,6 +53,7 @@ SENSOR_DESCRIPTIONS: list[TempoSensorDescription] = [
             if translation_key == "rouge_hc"
             else "Tarif Tempo Rouge HP"
         ),
+        object_id=f"{DOMAIN}_{translation_key}",
         data_key="tarifs",
         value_key=key,
         attribute_keys=METADATA_ATTRIBUTES,
@@ -163,6 +165,8 @@ class TempoSensor(CoordinatorEntity, SensorEntity):
         self.entity_description = description
         self._attr_translation_key = description.translation_key
         self._attr_name = description.name
+        if description.object_id:
+            self._attr_object_id = description.object_id
         self._attr_unique_id = f"{entry.entry_id}_{description.key}"
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, entry.entry_id)},
