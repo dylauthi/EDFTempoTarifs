@@ -39,6 +39,19 @@ SENSOR_DESCRIPTIONS: list[TempoSensorDescription] = [
     TempoSensorDescription(
         key=key,
         translation_key=translation_key,
+        name=(
+            "Tarif Tempo Bleu HC"
+            if translation_key == "bleu_hc"
+            else "Tarif Tempo Bleu HP"
+            if translation_key == "bleu_hp"
+            else "Tarif Tempo Blanc HC"
+            if translation_key == "blanc_hc"
+            else "Tarif Tempo Blanc HP"
+            if translation_key == "blanc_hp"
+            else "Tarif Tempo Rouge HC"
+            if translation_key == "rouge_hc"
+            else "Tarif Tempo Rouge HP"
+        ),
         data_key="tarifs",
         value_key=key,
         attribute_keys=METADATA_ATTRIBUTES,
@@ -54,6 +67,7 @@ SENSOR_DESCRIPTIONS.extend(
         TempoSensorDescription(
             key="now_tarif_kwh",
             translation_key="now_tarif_kwh",
+            name="Tarif Tempo actuel",
             data_key="now",
             value_key="libTarif",
             attribute_keys=(
@@ -66,6 +80,7 @@ SENSOR_DESCRIPTIONS.extend(
         TempoSensorDescription(
             key="jour_tempo_today",
             translation_key="jour_tempo_today",
+            name="Couleur Tempo aujourd'hui",
             data_key="today",
             value_key="libCouleur",
             attribute_keys=("dateJour", "codeJour", "periode"),
@@ -73,6 +88,7 @@ SENSOR_DESCRIPTIONS.extend(
         TempoSensorDescription(
             key="jour_tempo_tomorrow",
             translation_key="jour_tempo_tomorrow",
+            name="Couleur Tempo demain",
             data_key="tomorrow",
             value_key="libCouleur",
             attribute_keys=("dateJour", "codeJour", "periode"),
@@ -80,6 +96,7 @@ SENSOR_DESCRIPTIONS.extend(
         TempoSensorDescription(
             key="jour_tempo_yesterday",
             translation_key="jour_tempo_yesterday",
+            name="Couleur Tempo hier",
             data_key="yesterday",
             value_key="libCouleur",
             attribute_keys=("dateJour", "codeJour", "periode"),
@@ -87,6 +104,7 @@ SENSOR_DESCRIPTIONS.extend(
         TempoSensorDescription(
             key="tempo_stats",
             translation_key="tempo_stats",
+            name="Statistiques Tempo",
             data_key="stats",
             value_key="periode",
             attribute_keys=(
@@ -103,6 +121,7 @@ SENSOR_DESCRIPTIONS.extend(
         TempoSensorDescription(
             key="tempo_24h",
             translation_key="tempo_24h",
+            name="Prévisions Tempo 24h",
             data_key="24h",
             is_list=True,
         ),
@@ -133,8 +152,7 @@ class TempoSensor(CoordinatorEntity, SensorEntity):
         super().__init__(coordinator)
         self.entity_description = description
         self._attr_translation_key = description.translation_key
-        self._attr_has_entity_name = True
-        self._attr_name = None
+        self._attr_name = description.name
         self._attr_unique_id = f"{entry.entry_id}_{description.key}"
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, entry.entry_id)},

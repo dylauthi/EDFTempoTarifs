@@ -1,0 +1,65 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "EDF Tempo tariffs settings",
+        "description": "Fetch Tempo tariffs via the public API.",
+        "data": {
+          "name": "Integration name",
+          "update_interval": "Update interval (minutes)"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "EDF Tempo options",
+        "data": {
+          "update_interval": "Update interval (minutes)"
+        }
+      }
+    }
+  },
+  "title": "EDF Tempo Tariffs",
+  "entity": {
+    "sensor": {
+      "bleu_hc": {
+        "name": "Tempo Blue off-peak price"
+      },
+      "bleu_hp": {
+        "name": "Tempo Blue peak price"
+      },
+      "blanc_hc": {
+        "name": "Tempo White off-peak price"
+      },
+      "blanc_hp": {
+        "name": "Tempo White peak price"
+      },
+      "rouge_hc": {
+        "name": "Tempo Red off-peak price"
+      },
+      "rouge_hp": {
+        "name": "Tempo Red peak price"
+      },
+      "now_tarif_kwh": {
+        "name": "Tempo current rate"
+      },
+      "jour_tempo_today": {
+        "name": "Tempo color today"
+      },
+      "jour_tempo_tomorrow": {
+        "name": "Tempo color tomorrow"
+      },
+      "jour_tempo_yesterday": {
+        "name": "Tempo color yesterday"
+      },
+      "tempo_stats": {
+        "name": "Tempo statistics"
+      },
+      "tempo_24h": {
+        "name": "Tempo 24h forecast"
+      }
+    }
+  }
+}
