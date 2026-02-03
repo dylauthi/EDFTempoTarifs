@@ -45,6 +45,9 @@
       "now_tarif_kwh": {
         "name": "Tarif Tempo actuel"
       },
+      "now_tarif_kwh_value": {
+        "name": "Tarif Tempo actuel (EUR/kWh)"
+      },
       "jour_tempo_today": {
         "name": "Couleur Tempo aujourd'hui"
       },

@@ -78,6 +78,16 @@ SENSOR_DESCRIPTIONS.extend(
             ),
         ),
         TempoSensorDescription(
+            key="now_tarif_kwh_value",
+            translation_key="now_tarif_kwh_value",
+            name="Tarif Tempo actuel (EUR/kWh)",
+            data_key="now",
+            value_key="tarifKwh",
+            native_unit_of_measurement=UNIT_EURO_PER_KWH,
+            device_class=SensorDeviceClass.MONETARY,
+            state_class=SensorStateClass.MEASUREMENT,
+        ),
+        TempoSensorDescription(
             key="jour_tempo_today",
             translation_key="jour_tempo_today",
             name="Couleur Tempo aujourd'hui",
