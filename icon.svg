@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="EDF Tempo">
+  <defs>
+    <clipPath id="clip">
+      <circle cx="256" cy="256" r="236"/>
+    </clipPath>
+  </defs>
+  <rect width="512" height="512" fill="#0f172a"/>
+  <circle cx="256" cy="256" r="236" fill="#0f172a" stroke="#e5e7eb" stroke-width="12"/>
+  <g clip-path="url(#clip)">
+    <rect x="0" y="96" width="512" height="106" fill="#2563eb"/>
+    <rect x="0" y="202" width="512" height="106" fill="#f8fafc"/>
+    <rect x="0" y="308" width="512" height="106" fill="#dc2626"/>
+  </g>
+  <path d="M274 110 190 286h68l-20 116 90-176h-68l14-116z" fill="#fbbf24" stroke="#111827" stroke-width="6" stroke-linejoin="round"/>
+  <text x="256" y="458" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" fill="#e5e7eb">Tempo</text>
+</svg>

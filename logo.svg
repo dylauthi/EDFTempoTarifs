@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" role="img" aria-label="EDF Tempo">
+  <rect width="1200" height="400" fill="#0f172a"/>
+  <rect x="40" y="40" width="320" height="320" rx="28" fill="#0f172a" stroke="#e5e7eb" stroke-width="8"/>
+  <g>
+    <rect x="40" y="92" width="320" height="72" fill="#2563eb"/>
+    <rect x="40" y="164" width="320" height="72" fill="#f8fafc"/>
+    <rect x="40" y="236" width="320" height="72" fill="#dc2626"/>
+  </g>
+  <path d="M232 82 160 230h56l-18 88 78-148h-56l12-88z" fill="#fbbf24" stroke="#111827" stroke-width="6" stroke-linejoin="round"/>
+  <text x="420" y="210" font-family="Arial, sans-serif" font-size="96" fill="#e5e7eb">EDF Tempo</text>
+  <text x="420" y="285" font-family="Arial, sans-serif" font-size="36" fill="#94a3b8">Tarifs &amp; Couleurs</text>
+</svg>
