@@ -1,0 +1,47 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Paramètres des tarifs EDF Tempo",
+        "description": "Récupère les tarifs Tempo via l'API publique.",
+        "data": {
+          "name": "Nom de l'intégration",
+          "update_interval": "Intervalle de mise à jour (minutes)"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options EDF Tempo",
+        "data": {
+          "update_interval": "Intervalle de mise à jour (minutes)"
+        }
+      }
+    }
+  },
+  "title": "Tarifs EDF Tempo",
+  "entity": {
+    "sensor": {
+      "bleu_hc": {
+        "name": "Tarif Tempo Bleu HC"
+      },
+      "bleu_hp": {
+        "name": "Tarif Tempo Bleu HP"
+      },
+      "blanc_hc": {
+        "name": "Tarif Tempo Blanc HC"
+      },
+      "blanc_hp": {
+        "name": "Tarif Tempo Blanc HP"
+      },
+      "rouge_hc": {
+        "name": "Tarif Tempo Rouge HC"
+      },
+      "rouge_hp": {
+        "name": "Tarif Tempo Rouge HP"
+      }
+    }
+  }
+}
