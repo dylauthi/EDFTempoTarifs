@@ -1,6 +1,7 @@
 """EDF Tempo Tarifs integration entrypoint."""
 from __future__ import annotations
 
+import asyncio
 import logging
 
 import async_timeout
@@ -19,9 +20,9 @@ from .const import (
     DEFAULT_NAME,
     DEFAULT_UPDATE_INTERVAL,
     DOMAIN,
+    API_ENDPOINTS,
     PLATFORMS,
     REQUEST_TIMEOUT,
-    TARIFS_ENDPOINT,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -39,20 +40,35 @@ class TempoTarifCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         )
         self._session = aiohttp_client.async_get_clientsession(hass)
 
-    async def _async_update_data(self) -> dict[str, float]:
-        """Fetch data from the Tempo API."""
-        try:
-            async with async_timeout.timeout(REQUEST_TIMEOUT):
-                response = await self._session.get(TARIFS_ENDPOINT)
-                if response.status != 200:
-                    raise UpdateFailed(
-                        f"Unexpected response {response.status} from Tempo API"
-                    )
-                payload = await response.json()
-        except UpdateFailed:
-            raise
-        except Exception as err:  # pragma: no cover - network errors
-            raise UpdateFailed("Fetching EDF Tempo tarifs failed") from err
+    async def _fetch_json(self, url: str) -> Any:
+        """Fetch JSON data from a Tempo API endpoint."""
+        async with async_timeout.timeout(REQUEST_TIMEOUT):
+            response = await self._session.get(url)
+            if response.status != 200:
+                raise UpdateFailed(
+                    f"Unexpected response {response.status} from Tempo API"
+                )
+            return await response.json()
+
+    async def _async_update_data(self) -> dict[str, Any]:
+        """Fetch data from all Tempo API endpoints."""
+        tasks = {
+            name: self._fetch_json(url) for name, url in API_ENDPOINTS.items()
+        }
+        results = await asyncio.gather(*tasks.values(), return_exceptions=True)
+
+        payload: dict[str, Any] = {}
+        errors: list[str] = []
+        for (name, _), result in zip(tasks.items(), results):
+            if isinstance(result, Exception):
+                errors.append(name)
+                continue
+            payload[name] = result
+
+        if not payload:
+            raise UpdateFailed("Fetching EDF Tempo data failed")
+        if errors:
+            _LOGGER.warning("Tempo API partial update failed for: %s", ", ".join(errors))
         return payload
 
 

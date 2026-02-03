@@ -41,6 +41,24 @@
       },
       "rouge_hp": {
         "name": "Tarif Tempo Rouge HP"
+      },
+      "now_tarif_kwh": {
+        "name": "Tarif Tempo actuel"
+      },
+      "jour_tempo_today": {
+        "name": "Couleur Tempo aujourd'hui"
+      },
+      "jour_tempo_tomorrow": {
+        "name": "Couleur Tempo demain"
+      },
+      "jour_tempo_yesterday": {
+        "name": "Couleur Tempo hier"
+      },
+      "tempo_stats": {
+        "name": "Statistiques Tempo"
+      },
+      "tempo_24h": {
+        "name": "Prévisions Tempo 24h"
       }
     }
   }
