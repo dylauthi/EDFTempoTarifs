@@ -199,5 +199,10 @@ class TempoSensor(CoordinatorEntity, SensorEntity):
             attrs["items"] = data
             return attrs
         if description.attribute_keys and isinstance(data, dict):
-            attrs.update({key: data.get(key) for key in description.attribute_keys})
+            for key in description.attribute_keys:
+                value = data.get(key)
+                if key == "tarifKwh" and value is not None:
+                    attrs[key] = str(value)
+                else:
+                    attrs[key] = value
         return attrs or None
