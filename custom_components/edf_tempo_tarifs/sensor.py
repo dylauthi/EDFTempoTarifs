@@ -133,7 +133,8 @@ class TempoSensor(CoordinatorEntity, SensorEntity):
         super().__init__(coordinator)
         self.entity_description = description
         self._attr_translation_key = description.translation_key
-        self._attr_name = entry.title or DEFAULT_NAME
+        self._attr_has_entity_name = True
+        self._attr_name = None
         self._attr_unique_id = f"{entry.entry_id}_{description.key}"
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, entry.entry_id)},
